@@ -1,3 +1,12 @@
+<?php session_start();?>
+<?php 
+
+if (!$_SESSION["UserID"]){
+
+	  Header("Location: index.php");
+
+}else{?>
+
 <!DOCTYPE html>
 <html lang="en" class="has-aside-left has-aside-mobile-transition  has-aside-expanded">
 
@@ -41,32 +50,26 @@
             </a>
           </li>
           <li>
-            <a href="assignment.php" class="is-active has-icon">
+            <a href="assignment.php" class="has-icon">
               <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
               <span class="menu-item-label">มอบหมายงาน</span>
             </a>
           </li>
+         
+          <p class="menu-label">Management</p>
           <li>
-            <a href="tracking.html" class="is-active has-icon">
+            <a href="tracking.html" class="has-icon">
               <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
               <span class="menu-item-label">สถานะการส่งงาน
               </span>
             </a>
           </li>
-          <p class="menu-label">Management</p>
-          <li>
-            <a href="https://admin-one-html.justboil.me/" target="_blank" class="has-icon">
-              <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
-              <span class="menu-item-label">การลงทะเบียน</span>
-            </a>
-          </li>
           <br> <br> <br> <br> <br>
-          <li>
-            <a href="https://justboil.me/bulma-admin-template/one" class="has-icon">
-              <span class="icon"><i class="mdi mdi-help-circle"></i></span>
-              <span class="menu-item-label">ออกจากระบบ</span>
-            </a>
-          </li>
+          <li class="is-fixed-bottom">
+            <a href="logout.php" class="has-icon">
+                <center><button class="button is-danger is-rounded">Logout</button></center>
+              </a>
+            </li>      
         </ul>
       </div>
     </aside>
@@ -188,5 +191,5 @@
     <script type="text/javascript" src="js/main.js"></script>
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
 </body>
-
 </html>
+<?php }?>
