@@ -25,7 +25,21 @@ if (!$_SESSION["UserID"]) {
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
         <style>
-            
+            /* .my-custom-scrollbar {
+                position: relative;
+                height: 200px;
+                overflow: auto;
+            }
+
+            .table-wrapper-scroll-y {
+                display: block;
+            }
+
+            table.is-scrollable tbody {
+                overflow-y: scroll;
+                width: auto;
+                position: absolute;
+            } */
         </style>
     </head>
 
@@ -85,7 +99,7 @@ if (!$_SESSION["UserID"]) {
                     <ul>
                         <li class="has-text-white-bis">Admin</li>
                         <li class="has-text-white-bis">Management </li>
-                        <li class="has-text-white-bis">Student </li>
+                        <li class="has-text-white-bis">Users </li>
                     </ul>
                 </div>
             </div>
@@ -93,22 +107,23 @@ if (!$_SESSION["UserID"]) {
     </section>
     </div>
     <section class="section">
-        <form action="save_student.php" method="post">
+        <form action="save_teacher.php" method="post">
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label">Student detail</label>
+                    <label class="label">Account</label>
                 </div>
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                        <input class="input" type="text" name="student_id" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="Student ID"/>                                 
+                            <input class="input" type="text" name="Username" placeholder="Username">
+                            <span class="icon is-small is-left">
                                 <i class="fas fa-user"></i>
                             </span>
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded has-icons-left has-icons-right">
-                            <input class="input" type="text" name="student_name" placeholder="Full name">
+                            <input class="input" type="text" name="Password" placeholder="Password">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-envelope"></i>
                             </span>
@@ -119,45 +134,17 @@ if (!$_SESSION["UserID"]) {
                     </div>
                 </div>
             </div>
-
-            <div class="field is-horizontal">
-                <div class="field-label"></div>
-                <div class="field-body">
-                    <div class="field is-expanded">
-                        <div class="field has-addons">
-                            <p class="control">
-                            </p>
-                            <p class="control is-expanded">
-                                <input class="input" name="email" type="email" placeholder="Your Email">
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label">Birthday</label>
+                    <label class="label">Status</label>
                 </div>
                 <div class="field-body">
                     <div class="field is-narrow">
                         <div class="control">
-                            <input class="input" name="birthday" type="date">
-                        </div>
-                    </div>
-                    <div class="field is-narrow">
-                        <div class="control">
-                            <input class="input" name="sect" type="text" placeholder="Section">
-                        </div>
-                    </div>
-                    <div class="field is-narrow">
-                        <div class="control">
-                            
-                            <div class="select">
-                                <select name="status">
-                                    <option>เป็นนักศึกษาอยู่</option>
-                                    <option>พักการเรียน</option>
-                                    <option>หมดสถานะภาพ</option>
+                            <div class="select is-fullwidth">
+                                <select name="Userlevel">
+                                    <option>Admin</option>
+                                    <option>Member</option>                                
                                 </select>
                             </div>
                         </div>
@@ -166,13 +153,14 @@ if (!$_SESSION["UserID"]) {
             </div>
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label">Address</label>
+                    <label class="label">Full name</label>
                 </div>
                 <div class="field-body">
                     <div class="field">
                         <div class="control">
-                            <input class="input" name="address" type="text">
+                            <input class="input" type="text" name="Fullname" placeholder="Full name">
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -185,7 +173,7 @@ if (!$_SESSION["UserID"]) {
                     <div class="field">
                         <div class="control">
                             <button type="submit" class="button is-primary">
-                                submit
+                                Submit
                             </button>
                         </div>
                     </div>
@@ -195,19 +183,16 @@ if (!$_SESSION["UserID"]) {
         <div class="column  table-wrapper-scroll-y my-custom-scrollbar ">
 
             <div class="panel panel-default">
-
+                
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table id="student_data" class="table is-fullwidth is-scrollable  is-bordered is-striped   ">
+                        <table id="teacher_data" class="table is-fullwidth is-scrollable  is-bordered is-striped   ">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Student ID</th>
-                                    <th>Sect</th>
-                                    <th>Full name</th>
-                                    <th>Birthday</th>
-                                    <th>Address</th>
-                                    <th>Email</th>
+                                    <th>Username</th>
+                                    <th>Password</th>
+                                    <th>Fullname</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -219,7 +204,7 @@ if (!$_SESSION["UserID"]) {
         </div>
 
     </section>
-
+    
 
 
     <script type="text/javascript" src="js/main.js"></script>
@@ -231,37 +216,34 @@ if (!$_SESSION["UserID"]) {
 <script type="text/javascript" language="javascript">
     $(document).ready(function() {
 
-        var dataTable = $('#student_data').DataTable({
+        var dataTable = $('#teacher_data').DataTable({
             "processing": true,
             "serverSide": true,
             "order": [],
             "ajax": {
-                url: "fetch_student.php",
+                url: "fetch_teacher.php",
                 type: "POST"
             }
         });
 
-        $('#student_data').on('draw.dt', function() {
-            $('#student_data').Tabledit({
-                url: 'action_student.php',
+        $('#teacher_data').on('draw.dt', function() {
+            $('#teacher_data').Tabledit({
+                url: 'action_teacher.php',
                 dataType: 'json',
                 columns: {
-                    identifier: [0, 'id'],
+                    identifier: [0, 'ID'],
                     editable: [
-                        [1, 'student_id'],
-                        [2, 'sect'],
-                        [3, 'student_name'],
-                        [4, 'birthday'],
-                        [5, 'address'],
-                        [6, 'email'],
-                        [7, 'status', '{"เป็นนักศึกษาอยู่":"เป็นนักศึกษาอยู่","พักการเรียน":"พักการเรียน","หมดสถานะภาพ":"หมดสถานะภาพ"}']
+                        [1, 'Username'],
+                        [2, 'Password'],
+                        [3, 'Fullname'],
+                        [4, 'Userlevel', '{"Admin":"Admin","Teacher":"Teacher"}']
                     ]
                 },
                 restoreButton: false,
                 onSuccess: function(data, textStatus, jqXHR) {
                     if (data.action == 'delete') {
                         $('#' + data.id).remove();
-                        $('#student_data').DataTable().ajax.reload();
+                        $('#teacher_data').DataTable().ajax.reload();
                     }
                 }
             });

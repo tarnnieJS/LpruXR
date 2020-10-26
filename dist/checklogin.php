@@ -16,12 +16,13 @@ session_start();
                       $row = mysqli_fetch_array($result);
 
                       $_SESSION["UserID"] = $row["ID"];
-                      $_SESSION["User"] = $row["Firstname"]." ".$row["Lastname"];
+                      $_SESSION["User"] = $row["Fullname"];
                       $_SESSION["Userlevel"] = $row["Userlevel"];
+                      $_SESSION["T_ID"]= $row["T_ID"];
 
                       if($_SESSION["Userlevel"]=="Admin"){ //ถ้าเป็น admin ให้กระโดดไปหน้า admin.php
 
-                        Header("Location: admin.php");
+                        Header("Location: add_student.php");
 
                       }
 

@@ -158,6 +158,7 @@ if (!$_SESSION["UserID"]) {
               </div>
             </div>
           </div>
+          
           <hr>
 
           <?PHP
