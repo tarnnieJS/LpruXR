@@ -107,7 +107,7 @@ if (!$_SESSION["UserID"]) {
     </section>
     </div>
     <section class="section">
-        <form action="save_student.php" method="post">
+        <form action="save_teacher.php" method="post">
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
                     <label class="label">Account</label>
@@ -136,7 +136,7 @@ if (!$_SESSION["UserID"]) {
             </div>
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label">Status</label>
+                    <label class="label">User Detail</label>
                 </div>
                 <div class="field-body">
                     <div class="field is-narrow">
@@ -149,18 +149,64 @@ if (!$_SESSION["UserID"]) {
                             </div>
                         </div>
                     </div>
+                    <div class="field is-narrow">
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select name="name_title">
+                                    <option>นาย</option>
+                                    <option>นางสาว</option>      
+                                    <option>นาง</option>  
+                                    <option>ดร.</option>
+                                    <option>อาจารย์</option>
+                                    <option>รศ.</option>
+                                    <option>ผศ.</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-narrow">
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select name="branch"> 
+                                    <option>วิศวกรรมซอฟต์แวร์</option>
+                                    <option>คอมพิวเตอร์ธุรกิจ</option>      
+                                    <option>วิทยาการคอมพิวเตอร์</option>  
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-narrow">
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select name="faculty">
+                                    <option>เทคโนโลยีอุตสาหกรรม</option>
+                                    <option>วิทยาการจัดการ</option>      
+                                    <option>ครุศาสตร์</option>  
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label">Full name</label>
+                    <label class="label"></label>
                 </div>
                 <div class="field-body">
                     <div class="field">
                         <div class="control">
                             <input class="input" type="text" name="Fullname" placeholder="Full name">
-                        </div>
-                        
+                        </div>   
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="email" name="t_email" placeholder="Email">
+                        </div>   
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="text" name="T_ID" placeholder="Teacher ID">
+                        </div>   
                     </div>
                 </div>
             </div>
@@ -192,8 +238,13 @@ if (!$_SESSION["UserID"]) {
                                     <th>ID</th>
                                     <th>Username</th>
                                     <th>Password</th>
+                                    <th>Title name</th>
                                     <th>Fullname</th>
                                     <th>Status</th>
+                                    <th>Email</th>
+                                    <th>Branch</th>
+                                    <th>faculty</th>
+                                    <th>Teacher ID</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -232,11 +283,15 @@ if (!$_SESSION["UserID"]) {
                 dataType: 'json',
                 columns: {
                     identifier: [0, 'ID'],
-                    editable: [
-                        [1, 'Username'],
+                    editable: [ [1, 'Username'],
                         [2, 'Password'],
-                        [3, 'Fullname'],
-                        [4, 'Userlevel', '{"Admin":"Admin","Teacher":"Teacher"}']
+                        [3, 'name_title'],
+                        [4, 'Fullname'],
+                        [5, 'Userlevel', '{"Admin":"Admin","Teacher":"Teacher"}']
+                        [6, 't_email'],
+                        [7, 'branch'],
+                        [8, 'faculty'],
+                        [9, 'T_ID'],
                     ]
                 },
                 restoreButton: false,

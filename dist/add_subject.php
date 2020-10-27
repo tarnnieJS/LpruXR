@@ -99,7 +99,7 @@ if (!$_SESSION["UserID"]) {
                     <ul>
                         <li class="has-text-white-bis">Admin</li>
                         <li class="has-text-white-bis">Management </li>
-                        <li class="has-text-white-bis">Users </li>
+                        <li class="has-text-white-bis">Subject </li>
                     </ul>
                 </div>
             </div>
@@ -107,15 +107,15 @@ if (!$_SESSION["UserID"]) {
     </section>
     </div>
     <section class="section">
-        <form action="save_teacher.php" method="post">
+        <form action="save_subject.php" method="post">
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label">Account</label>
+                    <label class="label">Subject Detail</label>
                 </div>
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                            <input class="input" type="text" name="Username" placeholder="Username">
+                            <input class="input" type="text" name="subject_id" placeholder="Subject ID">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-user"></i>
                             </span>
@@ -123,7 +123,7 @@ if (!$_SESSION["UserID"]) {
                     </div>
                     <div class="field">
                         <p class="control is-expanded has-icons-left has-icons-right">
-                            <input class="input" type="text" name="Password" placeholder="Password">
+                            <input class="input" type="text" name="subject_name" placeholder="Subject Name">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-envelope"></i>
                             </span>
@@ -134,36 +134,7 @@ if (!$_SESSION["UserID"]) {
                     </div>
                 </div>
             </div>
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Status</label>
-                </div>
-                <div class="field-body">
-                    <div class="field is-narrow">
-                        <div class="control">
-                            <div class="select is-fullwidth">
-                                <select name="Userlevel">
-                                    <option>Admin</option>
-                                    <option>Member</option>                                
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Full name</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <input class="input" type="text" name="Fullname" placeholder="Full name">
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
+            
 
             <div class="field is-horizontal">
                 <div class="field-label">
@@ -186,14 +157,12 @@ if (!$_SESSION["UserID"]) {
                 
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table id="teacher_data" class="table is-fullwidth is-scrollable  is-bordered is-striped   ">
+                        <table id="subject" class="table is-fullwidth is-scrollable  is-bordered is-striped   ">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Username</th>
-                                    <th>Password</th>
-                                    <th>Fullname</th>
-                                    <th>Status</th>
+                                    <th>Subject ID</th>
+                                    <th>Subject name</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -213,41 +182,38 @@ if (!$_SESSION["UserID"]) {
 
     </html>
 <?php } ?>
-<script type="text/javascript" language="javascript">
-    $(document).ready(function() {
+<script type="text/javascript" language="javascript" >
+$(document).ready(function(){
 
-        var dataTable = $('#teacher_data').DataTable({
-            "processing": true,
-            "serverSide": true,
-            "order": [],
-            "ajax": {
-                url: "fetch_teacher.php",
-                type: "POST"
-            }
-        });
+ var dataTable = $('#sample_data').DataTable({
+  "processing" : true,
+  "serverSide" : true,
+  "order" : [],
+  "ajax" : {
+   url:"fetch.php",
+   type:"POST"
+  }
+ });
 
-        $('#teacher_data').on('draw.dt', function() {
-            $('#teacher_data').Tabledit({
-                url: 'action_teacher.php',
-                dataType: 'json',
-                columns: {
-                    identifier: [0, 'ID'],
-                    editable: [
-                        [1, 'Username'],
-                        [2, 'Password'],
-                        [3, 'Fullname'],
-                        [4, 'Userlevel', '{"Admin":"Admin","Teacher":"Teacher"}']
-                    ]
-                },
-                restoreButton: false,
-                onSuccess: function(data, textStatus, jqXHR) {
-                    if (data.action == 'delete') {
-                        $('#' + data.id).remove();
-                        $('#teacher_data').DataTable().ajax.reload();
-                    }
-                }
-            });
-        });
-
-    });
+ $('#sample_data').on('draw.dt', function(){
+  $('#sample_data').Tabledit({
+   url:'action.php',
+   dataType:'json',
+   columns:{
+    identifier : [0, 'id'],
+    editable:[[1, 'first_name'], [2, 'last_name']]
+   },
+   restoreButton:false,
+   onSuccess:function(data, textStatus, jqXHR)
+   {
+    if(data.action == 'delete')
+    {
+     $('#' + data.id).remove();
+     $('#sample_data').DataTable().ajax.reload();
+    }
+   }
+  });
+ });
+  
+}); 
 </script>

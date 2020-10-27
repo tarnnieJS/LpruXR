@@ -145,19 +145,15 @@ if (!$_SESSION["UserID"]) {
                             <input class="input" name="birthday" type="date">
                         </div>
                     </div>
-                    <div class="field is-narrow">
-                        <div class="control">
-                            <input class="input" name="sect" type="text" placeholder="Section">
-                        </div>
-                    </div>
+                
                     <div class="field is-narrow">
                         <div class="control">
                             
                             <div class="select">
                                 <select name="status">
-                                    <option>เป็นนักศึกษาอยู่</option>
-                                    <option>พักการเรียน</option>
-                                    <option>หมดสถานะภาพ</option>
+                                    <option>ปกติ</option>
+                                    <option>สิ้นสภาพ</option>
+                                  
                                 </select>
                             </div>
                         </div>
@@ -254,7 +250,7 @@ if (!$_SESSION["UserID"]) {
                         [4, 'birthday'],
                         [5, 'address'],
                         [6, 'email'],
-                        [7, 'status', '{"เป็นนักศึกษาอยู่":"เป็นนักศึกษาอยู่","พักการเรียน":"พักการเรียน","หมดสถานะภาพ":"หมดสถานะภาพ"}']
+                        [7, 'status', '{"Registered":"Registered","Not registered":"Not registered"}']
                     ]
                 },
                 restoreButton: false,

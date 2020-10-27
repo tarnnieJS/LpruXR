@@ -10,20 +10,20 @@ if($_POST['action'] == 'edit')
   ':student_id'  => $_POST['student_id'],
   ':sect'  => $_POST['sect'],
   ':student_name'  => $_POST['student_name'],
-  ':birthday'   => $_POST['address'],
+  ':birthday'   => $_POST['birthday'],
+  ':address'   => $_POST['address'],
   ':email'   => $_POST['email'],
   ':status'   => $_POST['status'],
   ':id'    => $_POST['id']
  );
 
- $query = "
- UPDATE user 
+ $query = " UPDATE student 
  SET student_id = :student_id, 
  sect = :sect, 
  student_name = :student_name,
- birthday = :birthday 
- address = :address 
- email = :email
+ birthday = :birthday ,
+ address = :address ,
+ email = :email,
  status = :status  
  WHERE id = :id
  ";

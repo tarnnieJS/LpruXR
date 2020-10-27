@@ -64,7 +64,7 @@ foreach($result as $row)
 
 function count_all_data($connect)
 {
- $query = "SELECT * FROM user";
+ $query = "SELECT * FROM student";
  $statement = $connect->prepare($query);
  $statement->execute();
  return $statement->rowCount();

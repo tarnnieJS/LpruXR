@@ -12,11 +12,11 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "INSERT INTO subject (subject_id, subject_name)
-VALUES (NULL, '$_POST[Sname]')";
+$sql = "INSERT INTO subject (id,subject_id, subject_name)
+VALUES (NULL, '$_POST[subject_id]', '$_POST[subject_name]')";
 
 if (mysqli_query($conn, $sql)) {
-    echo "<meta http-equiv='refresh' content='2;url=admin.php' />";
+    echo "<meta http-equiv='refresh' content='2;url=add_subject.php' />";
 } else {
   echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
