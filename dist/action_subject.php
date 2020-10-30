@@ -7,17 +7,15 @@ include('database_connection.php');
 if($_POST['action'] == 'edit')
 {
  $data = array(
-  ':first_name'  => $_POST['first_name'],
-  ':last_name'  => $_POST['last_name'],
-  ':gender'   => $_POST['gender'],
+  ':subject_id'  => $_POST['subject_id'],
+  ':subject_name'  => $_POST['subject_name'],
   ':id'    => $_POST['id']
  );
 
  $query = "
- UPDATE tbl_sample 
- SET first_name = :first_name, 
- last_name = :last_name, 
- gender = :gender 
+ UPDATE subject 
+ SET subject_id = :subject_id, 
+ subject_name = :subject_name,  
  WHERE id = :id
  ";
  $statement = $connect->prepare($query);
@@ -28,7 +26,7 @@ if($_POST['action'] == 'edit')
 if($_POST['action'] == 'delete')
 {
  $query = "
- DELETE FROM tbl_sample 
+ DELETE FROM subject 
  WHERE id = '".$_POST["id"]."'
  ";
  $statement = $connect->prepare($query);

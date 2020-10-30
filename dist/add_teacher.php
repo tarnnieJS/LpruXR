@@ -232,7 +232,7 @@ if (!$_SESSION["UserID"]) {
                 
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table id="teacher_data" class="table is-fullwidth is-scrollable  is-bordered is-striped   ">
+                        <table id="subj_data" class="table is-fullwidth is-scrollable  is-bordered is-striped   ">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -255,54 +255,53 @@ if (!$_SESSION["UserID"]) {
         </div>
 
     </section>
-    
-
-
     <script type="text/javascript" src="js/main.js"></script>
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
     </body>
 
     </html>
 <?php } ?>
-<script type="text/javascript" language="javascript">
-    $(document).ready(function() {
+<script type="text/javascript" language="javascript" >
+$(document).ready(function(){
 
-        var dataTable = $('#teacher_data').DataTable({
-            "processing": true,
-            "serverSide": true,
-            "order": [],
-            "ajax": {
-                url: "fetch_teacher.php",
-                type: "POST"
-            }
-        });
+ var dataTable = $('#subj_data').DataTable({
+  "processing" : true,
+  "serverSide" : true,
+  "order" : [],
+  "ajax" : {
+   url:"fetch_teacher.php",
+   type:"POST"
+  }
+ });
 
-        $('#teacher_data').on('draw.dt', function() {
-            $('#teacher_data').Tabledit({
-                url: 'action_teacher.php',
-                dataType: 'json',
-                columns: {
-                    identifier: [0, 'ID'],
-                    editable: [ [1, 'Username'],
-                        [2, 'Password'],
-                        [3, 'name_title'],
-                        [4, 'Fullname'],
-                        [5, 'Userlevel', '{"Admin":"Admin","Teacher":"Teacher"}']
-                        [6, 't_email'],
-                        [7, 'branch'],
-                        [8, 'faculty'],
-                        [9, 'T_ID'],
-                    ]
-                },
-                restoreButton: false,
-                onSuccess: function(data, textStatus, jqXHR) {
-                    if (data.action == 'delete') {
-                        $('#' + data.id).remove();
-                        $('#teacher_data').DataTable().ajax.reload();
-                    }
-                }
-            });
-        });
+ $('#subj_data').on('draw.dt', function(){
+  $('#subj_data').Tabledit({
+   url:'action_teacher.php',
+   dataType:'json',
+   columns:{
+    identifier : [0, 'ID'],
+    editable:[[1, 'Username'],
+     [2, 'Password'],
+     [3, 'name_title'],
+     [4, 'Fullname'],
+     [5, 'Userlevel', '{"Admin":"Admin","Member":"Member"}'],
+     [6, 't_email'],
+     [7, 'branch'],
+     [8, 'faculty'],
+     [9, 'T_ID']],
 
-    });
+   },
+   restoreButton:false,
+   onSuccess:function(data, textStatus, jqXHR)
+   {
+    if(data.action == 'delete')
+    {
+     $('#' + data.id).remove();
+     $('#subj_data').DataTable().ajax.reload();
+    }
+   }
+  });
+ });
+  
+}); 
 </script>

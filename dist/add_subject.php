@@ -157,7 +157,7 @@ if (!$_SESSION["UserID"]) {
                 
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table id="subject" class="table is-fullwidth is-scrollable  is-bordered is-striped   ">
+                        <table id="subj_data" class="table is-fullwidth is-scrollable  is-bordered is-striped   ">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -185,23 +185,23 @@ if (!$_SESSION["UserID"]) {
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(){
 
- var dataTable = $('#sample_data').DataTable({
+ var dataTable = $('#subj_data').DataTable({
   "processing" : true,
   "serverSide" : true,
   "order" : [],
   "ajax" : {
-   url:"fetch.php",
+   url:"fetch_subject.php",
    type:"POST"
   }
  });
 
- $('#sample_data').on('draw.dt', function(){
-  $('#sample_data').Tabledit({
-   url:'action.php',
+ $('#subj_data').on('draw.dt', function(){
+  $('#subj_data').Tabledit({
+   url:'action_subject.php',
    dataType:'json',
    columns:{
     identifier : [0, 'id'],
-    editable:[[1, 'first_name'], [2, 'last_name']]
+    editable:[[1, 'subject_id'], [2, 'subject_name']]
    },
    restoreButton:false,
    onSuccess:function(data, textStatus, jqXHR)
@@ -209,7 +209,7 @@ $(document).ready(function(){
     if(data.action == 'delete')
     {
      $('#' + data.id).remove();
-     $('#sample_data').DataTable().ajax.reload();
+     $('#subj_data').DataTable().ajax.reload();
     }
    }
   });

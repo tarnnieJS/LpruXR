@@ -4,16 +4,15 @@
 
 include('database_connection.php');
 
-$column = array("id", "first_name", "last_name", "gender");
+$column = array("id", "subject_id", "subject_name");
 
-$query = "SELECT * FROM tbl_sample ";
+$query = "SELECT * FROM subject ";
 
 if(isset($_POST["search"]["value"]))
 {
  $query .= '
- WHERE first_name LIKE "%'.$_POST["search"]["value"].'%" 
- OR last_name LIKE "%'.$_POST["search"]["value"].'%" 
- OR gender LIKE "%'.$_POST["search"]["value"].'%" 
+ WHERE subject_id LIKE "%'.$_POST["search"]["value"].'%" 
+ OR subject_name LIKE "%'.$_POST["search"]["value"].'%" 
  ';
 }
 
@@ -50,15 +49,14 @@ foreach($result as $row)
 {
  $sub_array = array();
  $sub_array[] = $row['id'];
- $sub_array[] = $row['first_name'];
- $sub_array[] = $row['last_name'];
- $sub_array[] = $row['gender'];
+ $sub_array[] = $row['subject_id'];
+ $sub_array[] = $row['subject_name'];
  $data[] = $sub_array;
 }
 
 function count_all_data($connect)
 {
- $query = "SELECT * FROM tbl_sample";
+ $query = "SELECT * FROM subject";
  $statement = $connect->prepare($query);
  $statement->execute();
  return $statement->rowCount();
