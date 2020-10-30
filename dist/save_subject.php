@@ -12,8 +12,8 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "INSERT INTO subject (id,subject_id, subject_name)
-VALUES (NULL, '$_POST[subject_id]', '$_POST[subject_name]')";
+$sql = "INSERT INTO subject (id,subject_id, subject_name,term)
+VALUES (NULL, '$_POST[subject_id]', '$_POST[subject_name]', '$_POST[term]')";
 
 if (mysqli_query($conn, $sql)) {
     echo "<meta http-equiv='refresh' content='2;url=add_subject.php' />";

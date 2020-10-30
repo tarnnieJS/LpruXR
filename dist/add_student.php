@@ -101,9 +101,7 @@ if (!$_SESSION["UserID"]) {
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                        <input class="input" type="text" name="student_id" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="Student ID"/>                                 
-                                <i class="fas fa-user"></i>
-                            </span>
+                        <input class="input" type="text" name="student_id" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="Student ID"/>                                                             </span>
                         </p>
                     </div>
                     <div class="field">
@@ -151,8 +149,8 @@ if (!$_SESSION["UserID"]) {
                             
                             <div class="select">
                                 <select name="status">
-                                    <option>ปกติ</option>
-                                    <option>สิ้นสภาพ</option>
+                                    <option>exist</option>
+                                    <option>expire</option>
                                   
                                 </select>
                             </div>
@@ -199,7 +197,7 @@ if (!$_SESSION["UserID"]) {
                                 <tr>
                                     <th>ID</th>
                                     <th>Student ID</th>
-                                    <th>Sect</th>
+                                    <th>group</th>
                                     <th>Full name</th>
                                     <th>Birthday</th>
                                     <th>Address</th>
@@ -250,7 +248,7 @@ if (!$_SESSION["UserID"]) {
                         [4, 'birthday'],
                         [5, 'address'],
                         [6, 'email'],
-                        [7, 'status', '{"Registered":"Registered","Not registered":"Not registered"}']
+                        [7, 'status', '{"exist":"exist","expire":"expire"}']
                     ]
                 },
                 restoreButton: false,

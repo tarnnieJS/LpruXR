@@ -4,7 +4,7 @@
 
 include('database_connection.php');
 
-$column = array("id", "student_id", "sect" , "student_name", "birthday" , "address", "email", "status");
+$column = array("id", "student_id", "s_group" , "student_name", "birthday" , "address", "email", "status");
 
 $query = "SELECT * FROM student ";
 
@@ -13,7 +13,7 @@ if(isset($_POST["search"]["value"]))
  $query .= '
  WHERE student_name LIKE "%'.$_POST["search"]["value"].'%" 
  OR student_id LIKE "%'.$_POST["search"]["value"].'%" 
- OR sect LIKE "%'.$_POST["search"]["value"].'%" 
+ OR s_group LIKE "%'.$_POST["search"]["value"].'%" 
  OR email LIKE "%'.$_POST["search"]["value"].'%" 
  ';
 }
@@ -53,7 +53,7 @@ foreach($result as $row)
  $sub_array = array();
  $sub_array[] = $row['id'];
  $sub_array[] = $row['student_id'];
- $sub_array[] = $row['sect'];
+ $sub_array[] = $row['s_group'];
  $sub_array[] = $row['student_name'];
  $sub_array[] = $row['birthday'];
  $sub_array[] = $row['address'];

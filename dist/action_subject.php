@@ -9,6 +9,7 @@ if($_POST['action'] == 'edit')
  $data = array(
   ':subject_id'  => $_POST['subject_id'],
   ':subject_name'  => $_POST['subject_name'],
+  ':term'  => $_POST['term'],
   ':id'    => $_POST['id']
  );
 
@@ -16,6 +17,7 @@ if($_POST['action'] == 'edit')
  UPDATE subject 
  SET subject_id = :subject_id, 
  subject_name = :subject_name,  
+ term = :term
  WHERE id = :id
  ";
  $statement = $connect->prepare($query);

@@ -25,21 +25,8 @@ if (!$_SESSION["UserID"]) {
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
         <style>
-            /* .my-custom-scrollbar {
-                position: relative;
-                height: 200px;
-                overflow: auto;
-            }
-
-            .table-wrapper-scroll-y {
-                display: block;
-            }
-
-            table.is-scrollable tbody {
-                overflow-y: scroll;
-                width: auto;
-                position: absolute;
-            } */
+          
+          
         </style>
     </head>
 
@@ -115,21 +102,17 @@ if (!$_SESSION["UserID"]) {
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                            <input class="input" type="text" name="subject_id" placeholder="Subject ID">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-user"></i>
-                            </span>
+                            <input class="input" type="text" name="subject_id" maxlength="7" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="Subject ID">
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded has-icons-left has-icons-right">
                             <input class="input" type="text" name="subject_name" placeholder="Subject Name">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-envelope"></i>
-                            </span>
-                            <span class="icon is-small is-right">
-                                <i class="fas fa-check"></i>
-                            </span>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control is-expanded has-icons-left has-icons-right">
+                            <input class="input" type="text" name="term" placeholder="Term">
                         </p>
                     </div>
                 </div>
@@ -163,6 +146,7 @@ if (!$_SESSION["UserID"]) {
                                     <th>ID</th>
                                     <th>Subject ID</th>
                                     <th>Subject name</th>
+                                    <th>Term</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -201,7 +185,7 @@ $(document).ready(function(){
    dataType:'json',
    columns:{
     identifier : [0, 'id'],
-    editable:[[1, 'subject_id'], [2, 'subject_name']]
+    editable:[[1, 'subject_id'], [2, 'subject_name'], [3, 'term']]
    },
    restoreButton:false,
    onSuccess:function(data, textStatus, jqXHR)
