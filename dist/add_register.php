@@ -93,32 +93,21 @@ if (!$_SESSION["UserID"]) {
     </section>
     </div>
     <section class="section">
-    <form id="create" action="save_create.php" method="post">
+    <form id="register" action="save_register.php" method="post">
           <div class="field is-horizontal">
             <div class="field-label is-normal">
-              <label class="label">Subject</label>
+              <label class="label">Register details</label>
             </div>
             <div class="field-body">
               <div class="field is-narrow">
                 <div class="control">
-                  <div  class="select is-fullwidth">
-                    <select  name="txtSubject" >
-                      <option >Term</option>
-                      <?php
-                      include "connectDB.php";  // Using database connection file here
-                      $records = mysqli_query($dbconnect, "SELECT term From subject");  // Use select query here 
-                      while ($data = mysqli_fetch_array($records)) {
-                        echo "<option value='" . $data['term'] . "'>" . $data['term'] . "</option>";  // displaying data in option menu
-                      }
-                      ?>
-                    </select>
-                  </div>
+                  <input class="input" type="text" name="term" placeholder="Term">
                 </div>
               </div>
               <div class="field is-narrow">
                 <div class="control">
                   <div  class="select is-fullwidth">
-                    <select  name="txtSubject" >
+                    <select  name="s_group" >
                       <option >Group</option>
                       <?php
                       include "connectDB.php";  // Using database connection file here
@@ -131,18 +120,14 @@ if (!$_SESSION["UserID"]) {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label"></label>
-            </div>
-            <div class="field-body">
               <div class="field is-narrow">
                 <div class="control">
+                  <div>
+
+                  </div>
                   <div  class="select is-fullwidth">
-                    <select  name="txtSubject" >
-                      <option >Subject ID </option>
+                    <select  name="subject_id" >
+                      <option > </option>
                       <?php
                       include "connectDB.php";  // Using database connection file here
                       $records = mysqli_query($dbconnect, "SELECT subject_id From subject");  // Use select query here 
@@ -154,10 +139,11 @@ if (!$_SESSION["UserID"]) {
                   </div>
                 </div>
               </div>
+             
               <div class="field is-narrow">
                 <div class="control">
                   <div  class="select is-fullwidth">
-                    <select  name="select_TID" >
+                    <select  name="T_ID" >
                       <option >Teacher ID</option>
                       <?php
                       include "connectDB.php";  // Using database connection file here
@@ -170,11 +156,11 @@ if (!$_SESSION["UserID"]) {
                   </div>
                 </div>
               </div>
+              
             </div>
-          </div>  
+          </div> 
           <div class="field is-horizontal">
-            <div class="field-label">
-              <!-- Left empty for spacing -->
+            <div class="field-label">     
             </div>
             <div class="field-body">
               <div class="field">
@@ -197,13 +183,10 @@ if (!$_SESSION["UserID"]) {
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Student ID</th>
-                                    <th>Sect</th>
-                                    <th>Full name</th>
-                                    <th>Birthday</th>
-                                    <th>Address</th>
-                                    <th>Email</th>
-                                    <th>Status</th>
+                                    <th>Term</th>
+                                    <th>Group</th>
+                                    <th>Subject ID</th>
+                                    <th>Teacher ID</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -231,7 +214,7 @@ if (!$_SESSION["UserID"]) {
             "serverSide": true,
             "order": [],
             "ajax": {
-                url: "fetch_student.php",
+                url: "fetch_register.php",
                 type: "POST"
             }
         });
@@ -241,15 +224,13 @@ if (!$_SESSION["UserID"]) {
                 url: 'action_student.php',
                 dataType: 'json',
                 columns: {
-                    identifier: [0, 'id'],
+                    identifier: [0, 'r_id'],
                     editable: [
-                        [1, 'student_id'],
-                        [2, 'sect'],
-                        [3, 'student_name'],
-                        [4, 'birthday'],
-                        [5, 'address'],
-                        [6, 'email'],
-                        [7, 'status', '{"Registered":"Registered","Not registered":"Not registered"}']
+                        [1, 's_group'],
+                        [2, 'term'],
+                        [3, 'subject_id'],
+                        [4, 'T_ID'],
+                   
                     ]
                 },
                 restoreButton: false,

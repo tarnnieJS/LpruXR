@@ -13,11 +13,13 @@ if (!$conn) {
 }
 
 $sql = "INSERT INTO register (
+  r_id,
   s_group,
   term,
   subject_id,
   T_ID)
- VALUES ('$_POST[s_group]', 
+ VALUES (NULL,
+   '$_POST[s_group]', 
    '$_POST[term]', 
    '$_POST[subject_id]', 
    '$_POST[T_ID]')";

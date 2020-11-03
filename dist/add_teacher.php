@@ -284,7 +284,7 @@ $(document).ready(function(){
      [2, 'Password'],
      [3, 'name_title'],
      [4, 'Fullname'],
-     [5, 'Userlevel', '{"Admin":"Admin","Member":"Member"}'],
+     [5, 'Userlevel', '{"Admin":"Admin","Teacher":"Teacher"}'],
      [6, 't_email'],
      [7, 'branch'],
      [8, 'faculty'],

@@ -112,7 +112,7 @@ if (!$_SESSION["UserID"]) {
                     </div>
                     <div class="field">
                         <p class="control is-expanded has-icons-left has-icons-right">
-                            <input class="input" type="text" name="term" placeholder="Term">
+                            <input class="input" type="text" name="credit" placeholder="Credit">
                         </p>
                     </div>
                 </div>
@@ -146,7 +146,7 @@ if (!$_SESSION["UserID"]) {
                                     <th>ID</th>
                                     <th>Subject ID</th>
                                     <th>Subject name</th>
-                                    <th>Term</th>
+                                    <th>Credit</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -185,7 +185,7 @@ $(document).ready(function(){
    dataType:'json',
    columns:{
     identifier : [0, 'id'],
-    editable:[[1, 'subject_id'], [2, 'subject_name'], [3, 'term']]
+    editable:[[1, 'subject_id'], [2, 'subject_name'], [3, 'credit']]
    },
    restoreButton:false,
    onSuccess:function(data, textStatus, jqXHR)

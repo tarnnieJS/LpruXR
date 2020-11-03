@@ -4,15 +4,17 @@
 
 include('database_connection.php');
 
-$column = array("id", "subject_id", "subject_name", "credit");
+$column = array("r_id", "s_group", "term" , "subject_id", "T_ID" );
 
-$query = "SELECT * FROM subject ";
+$query = "SELECT * FROM register ";
 
 if(isset($_POST["search"]["value"]))
 {
  $query .= '
- WHERE subject_id LIKE "%'.$_POST["search"]["value"].'%" 
- OR subject_name LIKE "%'.$_POST["search"]["value"].'%" 
+ WHERE term LIKE "%'.$_POST["search"]["value"].'%" 
+ OR subject_id LIKE "%'.$_POST["search"]["value"].'%" 
+ OR s_group LIKE "%'.$_POST["search"]["value"].'%" 
+ OR T_ID LIKE "%'.$_POST["search"]["value"].'%" 
  ';
 }
 
@@ -22,7 +24,7 @@ if(isset($_POST["order"]))
 }
 else
 {
- $query .= 'ORDER BY id DESC ';
+ $query .= 'ORDER BY r_id DESC ';
 }
 $query1 = '';
 
@@ -30,7 +32,8 @@ if($_POST["length"] != -1)
 {
  $query1 = 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
 }
-
+// echo $query ;
+// exit;
 $statement = $connect->prepare($query);
 
 $statement->execute();
@@ -48,16 +51,17 @@ $data = array();
 foreach($result as $row)
 {
  $sub_array = array();
- $sub_array[] = $row['id'];
+ $sub_array[] = $row['r_id'];
+ $sub_array[] = $row['term'];
+ $sub_array[] = $row['s_group'];
  $sub_array[] = $row['subject_id'];
- $sub_array[] = $row['subject_name'];
- $sub_array[] = $row['credit'];
+ $sub_array[] = $row['T_ID'];
  $data[] = $sub_array;
 }
 
 function count_all_data($connect)
 {
- $query = "SELECT * FROM subject";
+ $query = "SELECT * FROM register";
  $statement = $connect->prepare($query);
  $statement->execute();
  return $statement->rowCount();
