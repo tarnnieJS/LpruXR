@@ -15,7 +15,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 	FROM student  
 	WHERE student_id = '$StdID' 
 	";
-    $result1 = mysqli_query($conn, $check) or die(mysqli_error());
+    $result1 = mysqli_query($conn, $check) or die(mysqli_connect_error());
     $num=mysqli_num_rows($result1);
 
     if($num > 0)
@@ -30,7 +30,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 VALUES (NULL, '$StdID','$_POST[student_id]', '$_POST[student_name]', '$_POST[birthday]', '$_POST[address]', '$_POST[email]',  '$_POST[status]')";
 
            
-	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_connect_error());
 
 }
 	mysqli_close($conn);

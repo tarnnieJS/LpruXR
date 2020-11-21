@@ -2,7 +2,7 @@
 session_start();
         if(isset($_POST['Username'])){
 				//connection
-                  include("connection.php");
+                  include("../connect/connection.php");
 				//รับค่า user & password
                   $Username = $_POST['Username'];
                   $Password = $_POST['Password'];
@@ -22,7 +22,7 @@ session_start();
 
                       if($_SESSION["Userlevel"]=="Admin"){ //ถ้าเป็น admin ให้กระโดดไปหน้า admin.php
 
-                        Header("Location: add_student.php");
+                        Header("Location: ../../"); //add_student.php
 
                       }
 

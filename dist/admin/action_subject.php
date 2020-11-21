@@ -2,7 +2,7 @@
 
 //action.php
 
-include('database_connection.php');
+include('../connect/database_connection.php');
 
 if($_POST['action'] == 'edit')
 {

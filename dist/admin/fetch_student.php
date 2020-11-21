@@ -2,7 +2,7 @@
 
 //fetch.php
 
-include('database_connection.php');
+include('../connect/database_connection.php');
 
 $column = array("id", "student_id", "s_group" , "student_name", "birthday" , "address", "email", "status");
 

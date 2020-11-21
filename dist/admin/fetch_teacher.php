@@ -2,19 +2,33 @@
 
 //fetch.php
 
-include('database_connection.php');
+include('../connect/database_connection.php');
 
-$column = array("r_id", "s_group", "term" , "subject_id", "T_ID" );
+$column = array
+("ID",
+"Username",
+"Password" ,
+"name_title",
+"Fullname", 
+"Userlevel",
+"t_email",
+"branch",
+"faculty",
+"T_ID",);
 
-$query = "SELECT * FROM register ";
+$query = "SELECT * FROM user ";
 
 if(isset($_POST["search"]["value"]))
 {
  $query .= '
- WHERE term LIKE "%'.$_POST["search"]["value"].'%" 
- OR subject_id LIKE "%'.$_POST["search"]["value"].'%" 
- OR s_group LIKE "%'.$_POST["search"]["value"].'%" 
+ WHERE Username LIKE "%'.$_POST["search"]["value"].'%" 
+ OR Password LIKE "%'.$_POST["search"]["value"].'%" 
+ OR Fullname LIKE "%'.$_POST["search"]["value"].'%" 
+ OR t_email LIKE "%'.$_POST["search"]["value"].'%" 
+ OR branch LIKE "%'.$_POST["search"]["value"].'%" 
+ OR faculty LIKE "%'.$_POST["search"]["value"].'%" 
  OR T_ID LIKE "%'.$_POST["search"]["value"].'%" 
+
  ';
 }
 
@@ -24,7 +38,7 @@ if(isset($_POST["order"]))
 }
 else
 {
- $query .= 'ORDER BY r_id DESC ';
+ $query .= 'ORDER BY ID DESC ';
 }
 $query1 = '';
 
@@ -51,17 +65,22 @@ $data = array();
 foreach($result as $row)
 {
  $sub_array = array();
- $sub_array[] = $row['r_id'];
- $sub_array[] = $row['term'];
- $sub_array[] = $row['s_group'];
- $sub_array[] = $row['subject_id'];
+ $sub_array[] = $row['ID'];
+ $sub_array[] = $row['Username'];
+ $sub_array[] = $row['Password'];
+ $sub_array[] = $row['name_title'];
+ $sub_array[] = $row['Fullname'];
+ $sub_array[] = $row['Userlevel'];
+ $sub_array[] = $row['t_email'];
+ $sub_array[] = $row['branch'];
+ $sub_array[] = $row['faculty'];
  $sub_array[] = $row['T_ID'];
  $data[] = $sub_array;
 }
 
 function count_all_data($connect)
 {
- $query = "SELECT * FROM register";
+ $query = "SELECT * FROM user";
  $statement = $connect->prepare($query);
  $statement->execute();
  return $statement->rowCount();

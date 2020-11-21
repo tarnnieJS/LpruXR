@@ -15,7 +15,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 	FROM user  
 	WHERE Username = '$Username' 
 	";
-    $result1 = mysqli_query($conn, $check) or die(mysqli_error());
+    $result1 = mysqli_query($conn, $check) or die(mysqli_connect_error());
     $num=mysqli_num_rows($result1);
 
     if($num > 0)
@@ -48,7 +48,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
              '$_POST[faculty]',  
              '$_POST[T_ID]')";
            
-	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_connect_error());
 
 }
 	mysqli_close($conn);

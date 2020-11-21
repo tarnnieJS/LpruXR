@@ -2,7 +2,7 @@
 
 //fetch.php
 
-include('database_connection.php');
+include('../connect/database_connection.php');
 
 $column = array("id", "subject_id", "subject_name", "credit");
 

@@ -2,7 +2,7 @@
 
 //action.php
 
-include('database_connection.php');
+include('../connect/database_connection.php');
 
 if($_POST['action'] == 'edit')
 {
@@ -28,8 +28,8 @@ if($_POST['action'] == 'edit')
 if($_POST['action'] == 'delete')
 {
  $query = "
- DELETE FROM subject 
- WHERE id = '".$_POST["id"]."'
+ DELETE FROM register 
+ WHERE r_id = '".$_POST["r_id"]."'
  ";
  $statement = $connect->prepare($query);
  $statement->execute();

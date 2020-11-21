@@ -2,33 +2,21 @@
 
 //fetch.php
 
-include('database_connection.php');
+include('../connect/database_connection.php');
 
-$column = array
-("ID",
-"Username",
-"Password" ,
-"name_title",
-"Fullname", 
-"Userlevel",
-"t_email",
-"branch",
-"faculty",
-"T_ID",);
+$column = array("r_id", "s_group", "term" , "subject_id", "subject_name"  ,"Fullname");
 
-$query = "SELECT * FROM user ";
+$query = "SELECT r.*,s.subject_name, u.Fullname FROM register r LEFT JOIN subject s ON(s.subject_id=r.subject_id) 
+LEFT JOIN user u ON(u.ID=r.user_id) ";
 
 if(isset($_POST["search"]["value"]))
 {
  $query .= '
- WHERE Username LIKE "%'.$_POST["search"]["value"].'%" 
- OR Password LIKE "%'.$_POST["search"]["value"].'%" 
- OR Fullname LIKE "%'.$_POST["search"]["value"].'%" 
- OR t_email LIKE "%'.$_POST["search"]["value"].'%" 
- OR branch LIKE "%'.$_POST["search"]["value"].'%" 
- OR faculty LIKE "%'.$_POST["search"]["value"].'%" 
- OR T_ID LIKE "%'.$_POST["search"]["value"].'%" 
-
+ WHERE r.term LIKE "%'.$_POST["search"]["value"].'%" 
+ OR r.subject_id LIKE "%'.$_POST["search"]["value"].'%" 
+ OR r.s_group LIKE "%'.$_POST["search"]["value"].'%" 
+ OR u.Fullname LIKE "%'.$_POST["search"]["value"].'%" 
+ OR s.subject_name LIKE "%'.$_POST["search"]["value"].'%"
  ';
 }
 
@@ -38,7 +26,7 @@ if(isset($_POST["order"]))
 }
 else
 {
- $query .= 'ORDER BY ID DESC ';
+ $query .= 'ORDER BY r.r_id DESC ';
 }
 $query1 = '';
 
@@ -65,22 +53,18 @@ $data = array();
 foreach($result as $row)
 {
  $sub_array = array();
- $sub_array[] = $row['ID'];
- $sub_array[] = $row['Username'];
- $sub_array[] = $row['Password'];
- $sub_array[] = $row['name_title'];
+ $sub_array[] = $row['r_id'];
+ $sub_array[] = $row['term'];
+ $sub_array[] = $row['s_group'];
+ $sub_array[] = $row['subject_id'];
+ $sub_array[] = $row['subject_name'];
  $sub_array[] = $row['Fullname'];
- $sub_array[] = $row['Userlevel'];
- $sub_array[] = $row['t_email'];
- $sub_array[] = $row['branch'];
- $sub_array[] = $row['faculty'];
- $sub_array[] = $row['T_ID'];
  $data[] = $sub_array;
 }
 
 function count_all_data($connect)
 {
- $query = "SELECT * FROM user";
+ $query = "SELECT * FROM register";
  $statement = $connect->prepare($query);
  $statement->execute();
  return $statement->rowCount();
